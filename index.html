@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vestigia - Traces of Tableware</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="#" class="logo">
+                <div class="logo-circle">
+                    <img src="./img/Traces of tableware.png" alt="Borcelle Logo">
+                </div>
+                <span class="logo-text">Borcelle</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="nav-icons">
+                <button class="icon-btn" id="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn wishlist-btn" id="wishlist-btn">
+                    <i class="far fa-heart"></i>
+                    <span class="badge" id="wishlist-count">0</span>
+                </button>
+                <button class="icon-btn cart-btn" id="cart-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search for products..." autofocus>
+            <button class="search-close" id="search-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="search-results" id="search-results"></div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" id="cart-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: $<span id="cart-total">0.00</span></span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Wishlist Sidebar -->
+    <div class="wishlist-sidebar" id="wishlist-sidebar">
+        <div class="wishlist-header">
+            <h3>Wishlist</h3>
+            <button class="wishlist-close" id="wishlist-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="wishlist-items" id="wishlist-items">
+            <div class="empty-wishlist">
+                <i class="far fa-heart"></i>
+                <p>Your wishlist is empty</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Product Modal -->
+    <div class="product-modal" id="product-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-product">
+                <div class="modal-image">
+                    <div id="modal-product-image"></div>
+                </div>
+                <div class="modal-details">
+                    <h2 id="modal-product-name"></h2>
+                    <p id="modal-product-description"></p>
+                    <div class="modal-price">$<span id="modal-product-price"></span></div>
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" id="qty-minus">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10">
+                            <button class="qty-btn" id="qty-plus">+</button>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="add-to-cart-btn" id="modal-add-cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            Add to Cart
+                        </button>
+                        <button class="add-to-wishlist-btn" id="modal-add-wishlist">
+                            <i class="far fa-heart"></i>
+                            Add to Wishlist
+                        </button>
+                    </div>
+                    <div class="product-features">
+                        <div class="feature">
+                            <i class="fas fa-truck"></i>
+                            <span>Free shipping over $100</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-undo"></i>
+                            <span>30-day returns</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-leaf"></i>
+                            <span>Eco-friendly materials</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Traces of tableware</h1>
+                        <p>Discover our curated collection of handcrafted tableware, designed to create meaningful moments around your dining table.</p>
+                        <a href="#collections" class="cta-button">
+                            Explore Collection →
+                        </a>
+                    </div>
+                    <div class="hero-image">
+                        <img src="./img/2.png" alt="Vestigia tableware collection">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     
+    <section class="products" id="collections">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Collections</h2>
+                    <p>Each piece tells a story, crafted with care to elevate your everyday moments</p>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Bowl with botanical pattern -->
+                                <ellipse cx="100" cy="120" rx="70" ry="25" fill="#f8f9f6" stroke="#9CAF88" stroke-width="2"/>
+                                <ellipse cx="100" cy="80" rx="65" ry="45" fill="none" stroke="#9CAF88" stroke-width="2"/>
+                                <path d="M50 80 Q100 60 150 80" fill="none" stroke="#9CAF88" stroke-width="1.5"/>
+                                <!-- Botanical motifs -->
+                                <path d="M70 70 Q75 65 80 70 Q85 75 90 70" fill="none" stroke="#9CAF88" stroke-width="1"/>
+                                <path d="M110 70 Q115 65 120 70 Q125 75 130 70" fill="none" stroke="#9CAF88" stroke-width="1"/>
+                                <circle cx="75" cy="75" r="2" fill="#D4A017" opacity="0.6"/>
+                                <circle cx="125" cy="75" r="2" fill="#D4A017" opacity="0.6"/>
+                            </svg>
+                        </div>
+                        <div class="product-info">
+                            <h3>Sage Dinner Set</h3>
+                            <p>Hand-thrown ceramic pieces with botanical motifs</p>
+                            <div class="product-price">Rs.3,199</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Stacked plates with warm tones -->
+                                <ellipse cx="100" cy="130" rx="75" ry="15" fill="#D4A017" opacity="0.3"/>
+                                <ellipse cx="100" cy="125" rx="70" ry="12" fill="#f8f9f6" stroke="#D4A017" stroke-width="2"/>
+                                <ellipse cx="100" cy="115" rx="65" ry="10" fill="#f8f9f6" stroke="#D4A017" stroke-width="1.5"/>
+                                <ellipse cx="100" cy="105" rx="60" ry="8" fill="#f8f9f6" stroke="#D4A017" stroke-width="1"/>
+                                <!-- Decorative rim pattern -->
+                                <path d="M40 125 Q50 120 60 125 Q70 130 80 125 Q90 120 100 125 Q110 130 120 125 Q130 120 140 125 Q150 130 160 125" 
+                                      fill="none" stroke="#D4A017" stroke-width="1" opacity="0.7"/>
+                                <!-- Warm glow effect -->
+                                <circle cx="100" cy="115" r="45" fill="url(#warmGlow)" opacity="0.2"/>
+                                <defs>
+                                    <radialGradient id="warmGlow">
+                                        <stop offset="0%" stop-color="#D4A017"/>
+                                        <stop offset="100%" stop-color="transparent"/>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="product-info">
+                            <h3>Golden Hour Plates</h3>
+                            <p>Warm-toned stoneware perfect for intimate gatherings</p>
+                            <div class="product-price">Rs. 1,750</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Two artisanal mugs -->
+                                <g transform="translate(40,40)">
+                                    <!-- First mug -->
+                                    <rect x="10" y="30" width="35" height="45" rx="3" fill="#f8f9f6" stroke="#9CAF88" stroke-width="2"/>
+                                    <ellipse cx="27.5" cy="30" rx="17.5" ry="5" fill="#f8f9f6" stroke="#9CAF88" stroke-width="2"/>
+                                    <path d="M45 45 Q55 45 55 55 Q55 65 45 65" fill="none" stroke="#9CAF88" stroke-width="2"/>
+                                    <!-- Steam -->
+                                    <path d="M20 25 Q22 20 20 15" stroke="#9CAF88" stroke-width="1" fill="none" opacity="0.6"/>
+                                    <path d="M27 25 Q29 20 27 15" stroke="#9CAF88" stroke-width="1" fill="none" opacity="0.6"/>
+                                    <path d="M35 25 Q37 20 35 15" stroke="#9CAF88" stroke-width="1" fill="none" opacity="0.6"/>
+                                </g>
+                                <g transform="translate(90,45)">
+                                    <!-- Second mug -->
+                                    <rect x="10" y="30" width="35" height="40" rx="3" fill="#f8f9f6" stroke="#D4A017" stroke-width="1.5"/>
+                                    <ellipse cx="27.5" cy="30" rx="17.5" ry="5" fill="#f8f9f6" stroke="#D4A017" stroke-width="1.5"/>
+                                    <path d="M45 42 Q53 42 53 50 Q53 58 45 58" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                                    <!-- Botanical detail -->
+                                    <path d="M18 50 Q25 45 32 50" fill="none" stroke="#9CAF88" stroke-width="1"/>
+                                    <circle cx="25" cy="48" r="1.5" fill="#D4A017" opacity="0.7"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="product-info">
+                            <h3>Morning Ritual Mugs</h3>
+                            <p>Artisanal mugs designed for mindful mornings</p>
+                            <div class="product-price">Rs. 1,449</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Heritage serving pieces -->
+                                <!-- Large serving platter -->
+                                <ellipse cx="100" cy="90" rx="80" ry="30" fill="#f8f9f6" stroke="#9CAF88" stroke-width="2"/>
+                                <ellipse cx="100" cy="85" rx="75" ry="25" fill="none" stroke="#9CAF88" stroke-width="1"/>
+                                <!-- Smaller serving bowl -->
+                                <ellipse cx="100" cy="60" rx="40" ry="20" fill="#f8f9f6" stroke="#D4A017" stroke-width="1.5"/>
+                                <ellipse cx="100" cy="55" rx="35" ry="15" fill="none" stroke="#D4A017" stroke-width="1"/>
+                                <!-- Traditional pattern -->
+                                <path d="M60 85 Q70 80 80 85 Q90 90 100 85 Q110 80 120 85 Q130 90 140 85" 
+                                      fill="none" stroke="#9CAF88" stroke-width="1" opacity="0.8"/>
+                                <path d="M65 55 Q75 50 85 55 Q95 60 100 55 Q105 50 115 55 Q125 60 135 55" 
+                                      fill="none" stroke="#D4A017" stroke-width="1" opacity="0.8"/>
+                                <!-- Heritage decorative elements -->
+                                <circle cx="80" cy="85" r="3" fill="none" stroke="#D4A017" stroke-width="1"/>
+                                <circle cx="120" cy="85" r="3" fill="none" stroke="#D4A017" stroke-width="1"/>
+                                <path d="M100 45 L105 40 L100 35 L95 40 Z" fill="#9CAF88" opacity="0.6"/>
+                            </svg>
+                        </div>
+                        <div class="product-info">
+                            <h3>Heritage Serving Set</h3>
+                            <p>Timeless pieces that celebrate tradition</p>
+                            <div class="product-price">Rs. 4,245</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="./img/1.png" alt="Cozy dining scene">
+                    </div>
+                    <div class="about-text">
+                        <h2>Inspired by timeless gatherings</h2>
+                        <p>At Borcelle, we believe that the most beautiful moments happen around the table. Our handcrafted pieces are born from a deep appreciation for the rituals that bring us together.</p>
+                        <p>Each collection tells a story of connection, crafted by skilled artisans who understand that true beauty lies in the imperfect, the authentic, and the deeply personal.</p>
+                        <a href="#contact" class="cta-button">Learn Our Story →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner -->
+        <section class="cta-banner">
+            <div class="container">
+                <h2>Ready to transform your table?</h2>
+                <p>Discover pieces that will become part of your family's story for generations to come</p>
+                <a href="#collections" class="cta-button-large">
+                    Shop Now →
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2>Get in Touch</h2>
+                        <p>Have questions about our collections or need help choosing the perfect pieces?</p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope"></i>
+                                <span>hello@borcelle.com</span>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 12345 67890</span>
+                            </div>
+                            <div class="contact-method">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Mumbai, India</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Borcelle</h3>
+                    <p>Creating meaningful connections through thoughtfully crafted tableware. Each piece is a trace of beauty, designed to elevate your everyday moments.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                        <a href="#"><i class="fab fa-amazon"></i> Amazon</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Collections</h4>
+                    <ul>
+                        <li><a href="#">Dinner Sets</a></li>
+                        <li><a href="#">Serving Pieces</a></li>
+                        <li><a href="#">Drinkware</a></li>
+                        <li><a href="#">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Care Guide</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Borcelle. All rights reserved. Made with care for your table.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Overlay for sidebars -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <script>
+        // Product Data
+const products = [
+    {
+        id: 1,
+        name: "Sage Dinner Set",
+        description: "Hand-thrown ceramic pieces with botanical motifs. Each piece is carefully crafted by skilled artisans, featuring organic shapes and earthy tones that bring nature to your table.",
+        price: 180,
+        image: `<svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="100" cy="120" rx="70" ry="25" fill="#f8f9f6" stroke="#9CAF88" stroke-width="2"/>
+                    <ellipse cx="100" cy="80" rx="65" ry="45" fill="none" stroke="#9CAF88" stroke-width="2"/>
+                    <path d="M50 80 Q100 60 150 80" fill="none" stroke="#9CAF88" stroke-width="1.5"/>
+                    <path d="M70 70 Q75 65 80 70 Q85 75 90 70" fill="none" stroke="#9CAF88" stroke-width="1"/>
+                    <path d="M110 70 Q115 65 120 70 Q125 75 130 70" fill="none" stroke="#9CAF88" stroke-width="1"/>
+                    <circle cx="75" cy="75" r="2" fill="#D4A017" opacity="0.6"/>
+                    <circle cx="125" cy="75" r="2" fill="#D4A017" opacity="0.6"/>
+                </svg>`
+    },
+    {
+        id: 2,
+        name: "Golden Hour Plates",
+        description: "Warm-toned stoneware perfect for intimate gatherings. The golden glazes catch and reflect light beautifully, creating an inviting atmosphere for any meal.",
+        price: 95,
+        image: `<svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="warmGlow">
+                            <stop offset="0%" stop-color="#D4A017"/>
+                            <stop offset="100%" stop-color="transparent"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="100" cy="130" rx="75" ry="15" fill="#D4A017" opacity="0.3"/>
+                    <ellipse cx="100" cy="125" rx="70" ry="12" fill="#f8f9f6" stroke="#D4A017" stroke-width="2"/>
+                    <ellipse cx="100" cy="115" rx="65" ry="10" fill="#f8f9f6" stroke="#D4A017" stroke-width="1.5"/>
+                    <ellipse cx="100" cy="105" rx="60" ry="8" fill="#f8f9f6" stroke="#D4A017" stroke-width="1"/>
+                    <path d="M40 125 Q50 120 60 125 Q70 130 80 125 Q90 120 100 125 Q110 130 120 125 Q130 120 140 125 Q150 130 160 125" 
+                          fill="none" stroke="#D4A017" stroke-width="1" opacity="0.7"/>
+                    <circle cx="100" cy="115" r="45" fill="url(#warmGlow)" opacity="0.2"/>
+                </svg>`
+    },
+    {
+        id: 3,
+        name: "Morning Ritual Mugs",
+        description: "Artisanal mugs designed for mindful mornings. The perfect size and weight for your daily coffee or tea ritual, with comfortable handles and beautiful glazes.",
+        price: 48,
+        image: `<svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(40,40)">
+                        <rect x="10" y="30" width="35" height="45" rx="3" fill="#f8f9f6" stroke="#9CAF88" stroke-width="2"/>
+                        <ellipse cx="27.5" cy="30" rx="17.5" ry="5" fill="#f8f9f6" stroke="#9CAF88" stroke-width="2"/>
+                        <path d="M45 45 Q55 45 55 55 Q55 65 45 65" fill="none" stroke="#9CAF88" stroke-width="2"/>
+                        <path d="M20 25 Q22 20 20 15" stroke="#9CAF88" stroke-width="1" fill="none" opacity="0.6"/>
+                        <path d="M27 25 Q29 20 27 15" stroke="#9CAF88" stroke-width="1" fill="none" opacity="0.6"/>
+                        <path d="M35 25 Q37 20 35 15" stroke="#9CAF88" stroke-width="1" fill="none" opacity="0.6"/>
+                    </g>
+                    <g transform="translate(90,45)">
+                        <rect x="10" y="30" width="35" height="40" rx="3" fill="#f8f9f6" stroke="#D4A017" stroke-width="1.5"/>
+                        <ellipse cx="27.5" cy="30" rx="17.5" ry="5" fill="#f8f9f6" stroke="#D4A017" stroke-width="1.5"/>
+                        <path d="M45 42 Q53 42 53 50 Q53 58 45 58" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                        <path d="M18 50 Q25 45 32 50" fill="none" stroke="#9CAF88" stroke-width="1"/>
+                        <circle cx="25" cy="48" r="1.5" fill="#D4A017" opacity="0.7"/>
+                    </g>
+                </svg>`
+    },
+    {
+        id: 4,
+        name: "Heritage Serving Set",
+        description: "Timeless pieces that celebrate tradition. This collection features classic patterns and forms that have been loved for generations, perfect for special occasions.",
+        price: 225,
+        image: `<svg width="200" height="160" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="100" cy="90" rx="80" ry="30" fill="#f8f9f6" stroke="#9CAF88" stroke-width="2"/>
+                    <ellipse cx="100" cy="85" rx="75" ry="25" fill="none" stroke="#9CAF88" stroke-width="1"/>
+                    <ellipse cx="100" cy="60" rx="40" ry="20" fill="#f8f9f6" stroke="#D4A017" stroke-width="1.5"/>
+                    <ellipse cx="100" cy="55" rx="35" ry="15" fill="none" stroke="#D4A017" stroke-width="1"/>
+                    <path d="M60 85 Q70 80 80 85 Q90 90 100 85 Q110 80 120 85 Q130 90 140 85" 
+                          fill="none" stroke="#9CAF88" stroke-width="1" opacity="0.8"/>
+                    <path d="M65 55 Q75 50 85 55 Q95 60 100 55 Q105 50 115 55 Q125 60 135 55" 
+                          fill="none" stroke="#D4A017" stroke-width="1" opacity="0.8"/>
+                    <circle cx="80" cy="85" r="3" fill="none" stroke="#D4A017" stroke-width="1"/>
+                    <circle cx="120" cy="85" r="3" fill="none" stroke="#D4A017" stroke-width="1"/>
+                    <path d="M100 45 L105 40 L100 35 L95 40 Z" fill="#9CAF88" opacity="0.6"/>
+                </svg>`
+    }
+];
+
+// State Management
+let cart = [];
+let wishlist = [];
+let currentProduct = null;
+
+// DOM Elements
+const searchBtn = document.getElementById('search-btn');
+const searchOverlay = document.getElementById('search-overlay');
+const searchClose = document.getElementById('search-close');
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+
+const cartBtn = document.getElementById('cart-btn');
+const cartSidebar = document.getElementById('cart-sidebar');
+const cartClose = document.getElementById('cart-close');
+const cartItems = document.getElementById('cart-items');
+const cartCount = document.getElementById('cart-count');
+const cartTotal = document.getElementById('cart-total');
+
+const wishlistBtn = document.getElementById('wishlist-btn');
+const wishlistSidebar = document.getElementById('wishlist-sidebar');
+const wishlistClose = document.getElementById('wishlist-close');
+const wishlistItems = document.getElementById('wishlist-items');
+const wishlistCount = document.getElementById('wishlist-count');
+
+const productModal = document.getElementById('product-modal');
+const modalOverlay = document.getElementById('modal-overlay');
+const modalClose = document.getElementById('modal-close');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+const productGrid = document.getElementById('product-grid');
+const contactForm = document.getElementById('contact-form');
+
+// Initialize App
+document.addEventListener('DOMContentLoaded', function() {
+    renderProducts();
+    setupEventListeners();
+});
+
+// Event Listeners
+function setupEventListeners() {
+    // Search functionality
+    searchBtn.addEventListener('click', openSearch);
+    searchClose.addEventListener('click', closeSearch);
+    searchInput.addEventListener('input', handleSearch);
+    searchOverlay.addEventListener('click', (e) => {
+        if (e.target === searchOverlay) closeSearch();
+    });
+
+    // Cart functionality
+    cartBtn.addEventListener('click', openCart);
+    cartClose.addEventListener('click', closeCart);
+
+    // Wishlist functionality
+    wishlistBtn.addEventListener('click', openWishlist);
+    wishlistClose.addEventListener('click', closeWishlist);
+
+    // Modal functionality
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+
+    // Sidebar overlay
+    sidebarOverlay.addEventListener('click', closeSidebars);
+
+    // Contact form
+    contactForm.addEventListener('submit', handleContactForm);
+
+    // Quantity controls in modal
+    document.getElementById('qty-minus').addEventListener('click', decreaseQuantity);
+    document.getElementById('qty-plus').addEventListener('click', increaseQuantity);
+
+    // Modal action buttons
+    document.getElementById('modal-add-cart').addEventListener('click', addToCartFromModal);
+    document.getElementById('modal-add-wishlist').addEventListener('click', addToWishlistFromModal);
+
+    // Close modals on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeSearch();
+            closeModal();
+            closeSidebars();
+        }
+    });
+}
+
+// Search Functionality
+function openSearch() {
+    searchOverlay.classList.add('active');
+    searchInput.focus();
+}
+
+function closeSearch() {
+    searchOverlay.classList.remove('active');
+    searchInput.value = '';
+    searchResults.innerHTML = '';
+}
+
+function handleSearch() {
+    const query = searchInput.value.toLowerCase().trim();
+    
+    if (query.length < 2) {
+        searchResults.innerHTML = '';
+        return;
+    }
+
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(query) ||
+        product.description.toLowerCase().includes(query)
+    );
+
+    displaySearchResults(filteredProducts);
+}
+
+function displaySearchResults(filteredProducts) {
+    if (filteredProducts.length === 0) {
+        searchResults.innerHTML = '<div class="no-results">No products found</div>';
+        return;
+    }
+
+    searchResults.innerHTML = filteredProducts.map(product => `
+        <div class="search-result-item" onclick="openProductModal(${product.id})">
+            <div class="search-item-image">${product.image}</div>
+            <div class="search-item-details">
+                <h4>${product.name}</h4>
+                <p>$${product.price}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Cart Functionality
+function openCart() {
+    cartSidebar.classList.add('active');
+    sidebarOverlay.classList.add('active');
+}
+
+function closeCart() {
+    cartSidebar.classList.remove('active');
+    sidebarOverlay.classList.remove('active');
+}
+
+function addToCart(productId, quantity = 1) {
+    const product = products.find(p => p.id === productId);
+    const existingItem = cart.find(item => item.id === productId);
+
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.push({ ...product, quantity });
+    }
+
+    updateCartDisplay();
+    showNotification(`${product.name} added to cart!`, 'success');
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    updateCartDisplay();
+}
+
+function updateCartQuantity(productId, change) {
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+            removeFromCart(productId);
+        } else {
+            updateCartDisplay();
+        }
+    }
+}
+
+function updateCartDisplay() {
+    cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartTotal.textContent = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = `
+            <div class="empty-cart">
+                <i class="fas fa-shopping-bag"></i>
+                <p>Your cart is empty</p>
+            </div>
+        `;
+    } else {
+        cartItems.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <div class="item-image">${item.image}</div>
+                <div class="item-details">
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-price">$${item.price}</div>
+                    <div class="item-quantity">
+                        <button class="qty-control" onclick="updateCartQuantity(${item.id}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="qty-control" onclick="updateCartQuantity(${item.id}, 1)">+</button>
+                    </div>
+                </div>
+                <button class="remove-item" onclick="removeFromCart(${item.id})">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `).join('');
+    }
+}
+
+// Wishlist Functionality
+function openWishlist() {
+    wishlistSidebar.classList.add('active');
+    sidebarOverlay.classList.add('active');
+}
+
+function closeWishlist() {
+    wishlistSidebar.classList.remove('active');
+    sidebarOverlay.classList.remove('active');
+}
+
+function addToWishlist(productId) {
+    const product = products.find(p => p.id === productId);
+    const existingItem = wishlist.find(item => item.id === productId);
+
+    if (!existingItem) {
+        wishlist.push(product);
+        updateWishlistDisplay();
+        showNotification(`${product.name} added to wishlist!`, 'success');
+    } else {
+        showNotification(`${product.name} is already in your wishlist!`, 'error');
+    }
+}
+
+function removeFromWishlist(productId) {
+    wishlist = wishlist.filter(item => item.id !== productId);
+    updateWishlistDisplay();
+}
+    </script>
+</body>
+</html>
