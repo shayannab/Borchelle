@@ -1,7 +1,5 @@
 # 🍽️ Borchelle - Premium Tableware E-commerce
 
-![Borchelle Banner](https://via.placeholder.com/1200x400/9CAF88/FFFFFF?text=Borchelle+-+Traces+of+Tableware)
-
 A modern, elegant e-commerce website for premium handcrafted tableware. Built with vanilla JavaScript, featuring a clean design with sage green and mustard yellow color scheme.
 
 ## 🌐 Live Demo
