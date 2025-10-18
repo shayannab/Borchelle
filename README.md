@@ -4,7 +4,7 @@ A modern, elegant e-commerce website for premium handcrafted tableware. Built wi
 
 ## 🌐 Live Demo
 
-**[View Live Site](YOUR_LIVE_LINK_HERE)**
+**[View Live Site](https://shayannab.github.io/Borchelle/)**
 
 ## ✨ Features
 
@@ -194,8 +194,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👤 Author
 
 **Your Name**
-- GitHub: [@shayannab]([https://github.com/YOUR_USERNAME](https://github.com/shayannab))
-- X: [shayanna_0]([https://linkedin.com/in/YOUR_PROFILE](https://x.com/shayanna_0))
+- GitHub: [@shayannab]([https://github.com/shayannab])
+- X: [shayanna_0]([https://x.com/shayanna_0])
 - Portfolio: [yourwebsite.com](https://yourwebsite.com)
 
 ## 🙏 Acknowledgments
@@ -211,8 +211,8 @@ For support, email your.email@example.com or open an issue in the GitHub reposit
 
 ## 🔗 Links
 
-- **Live Demo**: [YOUR_LIVE_LINK_HERE]
-- **Repository**: [https://github.com/YOUR_USERNAME/borchelle]([https://github.com/shayannab/Borchelle.git])
+- **Live Demo**: [https://shayannab.github.io/Borchelle/]
+- **Repository**: [https://github.com/shayannab/Borchelle]([https://github.com/shayannab/Borchelle])
 
 
 ---
